@@ -1,19 +1,28 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 public class Main {
     public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        BasketSplitter basketSplitter = new BasketSplitter("/Users/zomer/IdeaProjects/ocado/src/main/resources/config.json");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Array of items to be split into delivery packages
+        String[] itemsArray = {
+                "Fond - Chocolate", "Chocolate - Unsweetened", "Nut - Almond, Blanched, Whole", "Haggis", "Mushroom - Porcini Frozen", "Cake - Miini Cheesecake Cherry", "Sauce - Mint", "Longan", "Bag Clear 10 Lb", "Nantucket - Pomegranate Pear", "Puree - Strawberry", "Numi - Assorted Teas", "Apples - Spartan", "Garlic - Peeled", "Cabbage - Nappa", "Bagel - Whole White Sesame", "Tea - Apple Green Tea"
+        };
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
-            System.out.println("i = " + i);
+        // Convert the array to a list of items
+        List<String> itemList = new ArrayList<>(Arrays.asList(itemsArray));
+
+        // Split the items into delivery packages using the BasketSplitter
+        var result = basketSplitter.split(itemList);
+
+        // Print the delivery packages
+        for(var Package :result.entrySet()){
+            System.out.println(Package.getKey() + " " + Package.getValue());
         }
     }
 }
